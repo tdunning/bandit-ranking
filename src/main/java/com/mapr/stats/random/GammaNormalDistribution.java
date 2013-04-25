@@ -73,6 +73,11 @@ public class GammaNormalDistribution extends AbstractBayesianDistribution {
         return new Normal(m, Math.sqrt(ss / n), gen);
     }
 
+    @Override
+    public double getMean() {
+        return m;
+    }
+
     public double nextSD() {
         return Math.sqrt(nextVariance());
     }

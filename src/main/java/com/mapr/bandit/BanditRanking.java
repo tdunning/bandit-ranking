@@ -44,10 +44,15 @@ public class BanditRanking {
             prob[j] = u.nextDouble();
         }
         Arrays.sort(prob);
+        for (int j = 0; j < totalItems; j++) {
+            prob[j] = 1 - prob[j];
+        }
 
+        double cumulativeRegret = 0;
         for (int i = 0; i < 1000; i++) {
 
             double precision = 0;
+            double regret = 0;
             for (int m = 0; m < 50; m++) {
                 List<Integer> page = bandit.get(m).rank(pageSize);
                 for (Integer item : page) {
@@ -55,14 +60,22 @@ public class BanditRanking {
                         precision++;
                     }
                 }
+
+                for (int j = 0; j < pageSize; j++) {
+                    regret += prob[j] - bandit.get(m).getMean(j);
+                }
+
                 for (int j = 0; j < pageSize; j++) {
                     int k = page.get(j);
-                    bandit.get(m).train(k, u.nextDouble() > prob[k] ? 0 : 1);
+                    int reward = u.nextDouble() < prob[k] ? 1 : 0;
+                    bandit.get(m).train(k, reward);
                 }
             }
             precision /= keyItems * 50.0;
+            regret /= 50;
+            cumulativeRegret += regret;
 
-            System.out.printf("%d,%.1f\n", i, precision * 100);
+            System.out.printf("%d,%.1f,%.3f,%.3f\n", i + 1, precision * 100, regret, cumulativeRegret);
         }
     }
 }

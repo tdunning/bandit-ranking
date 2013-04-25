@@ -48,4 +48,5 @@ public abstract class AbstractBayesianDistribution extends AbstractContinousDist
 
     public abstract AbstractContinousDistribution posteriorDistribution();
 
+    public abstract double getMean();
 }

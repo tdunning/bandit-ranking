@@ -19,6 +19,7 @@ package com.mapr.stats.bandit;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
 import com.mapr.stats.random.AbstractBayesianDistribution;
 
 import java.util.List;
@@ -80,7 +81,7 @@ public abstract class BayesianBandit {
      * @return A list of the indexes of the bandits.
      */
     public List<Integer> rank(int sampleSize) {
-        Map<Double, Integer> tmp = Maps.newTreeMap();
+        Map<Double, Integer> tmp = Maps.newTreeMap(Ordering.natural().reverse());
         int i = 0;
         for (AbstractBayesianDistribution dist : bd) {
             double p = dist.nextMean();
@@ -96,5 +97,12 @@ public abstract class BayesianBandit {
             }
         }
         return r;
+    }
+
+    /**
+     * Returns the mean of a particular distribution in the bandit
+     */
+    public double getMean(int k) {
+        return bd.get(k).getMean();
     }
 }

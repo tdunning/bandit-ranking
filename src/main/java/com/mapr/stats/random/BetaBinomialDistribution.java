@@ -76,6 +76,11 @@ public class BetaBinomialDistribution extends AbstractBayesianDistribution {
         return createBernoulliDistribution(bd.getAlpha() / (bd.getAlpha() + bd.getBeta()));
     }
 
+    @Override
+    public double getMean() {
+        return bd.mean();
+    }
+
     private AbstractContinousDistribution createBernoulliDistribution(final double p) {
         return new AbstractContinousDistribution() {
             @Override
