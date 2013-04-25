@@ -5,7 +5,6 @@ import com.mapr.stats.bandit.BanditFactory;
 import com.mapr.stats.bandit.BayesianBandit;
 import com.mapr.stats.bandit.BetaBayesFactory;
 import org.apache.mahout.common.RandomUtils;
-import org.apache.mahout.common.RandomWrapper;
 import org.apache.mahout.math.jet.random.Uniform;
 
 import java.util.Arrays;
@@ -63,7 +62,8 @@ public class BanditRanking {
                 }
 
                 for (int j = 0; j < pageSize; j++) {
-                    regret += prob[j] - bandit.get(m).getMean(j);
+                    int k = page.get(j);
+                    regret += prob[j] - prob[k];
                 }
 
                 for (int j = 0; j < pageSize; j++) {
