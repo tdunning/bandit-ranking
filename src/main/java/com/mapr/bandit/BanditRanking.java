@@ -10,12 +10,13 @@ import org.apache.mahout.math.jet.random.Uniform;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Implements a Bandit ranking.
  */
 public class BanditRanking {
-    private static RandomWrapper gen = RandomUtils.getRandom();
+    private static Random gen = RandomUtils.getRandom();
 
     public static void main(String[] args) {
         int keyItems = 10, pageSize = 20, totalItems = 200;
