@@ -49,4 +49,3 @@ The file named "samples.csv" will contain data that defines a graph which shows 
 of samples taken as a function of the rank of a comment.  You should see a sharp drop at the
 end of the first page indicating that only the highest quality comments are actually
 characterized carefully.
-
