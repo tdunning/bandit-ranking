@@ -17,11 +17,13 @@
 
 package com.mapr.stats.bandit;
 
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
 import com.mapr.stats.random.AbstractBayesianDistribution;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +39,7 @@ import java.util.Map;
  * such as EpsilonGreedy.  Such classes will need to over-ride all of the methods
  * here.
  */
-public abstract class BayesianBandit {
+public abstract class BayesianBandit implements Iterable<AbstractBayesianDistribution> {
     // we have one distribution for each bandit
     private final List<AbstractBayesianDistribution> bd = Lists.newArrayList();
 
@@ -104,5 +106,15 @@ public abstract class BayesianBandit {
      */
     public double getMean(int k) {
         return bd.get(k).getMean();
+    }
+
+    /**
+     * Returns an iterator over a set of elements of type T.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<AbstractBayesianDistribution> iterator() {
+        return Iterators.unmodifiableIterator(bd.iterator());
     }
 }

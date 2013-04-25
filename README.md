@@ -35,7 +35,8 @@ To run the code on a sample problem, do this:
 
     $ java -jar target/bandit-ranking-1.0-SNAPSHOT-jar-with-dependencies.jar  [k [p [n]]]
 
-The output will be points that describe a graph of the precision of the ranking for the
+The output will be contained in two files.  The file named "quality.csv" will contain
+points that describe a graph of the precision of the ranking for the
 first p presented items, the per trial regret and the cumulative regret. Precision is
 measured by how many of the top k items are shown in the first p items where there are
 n items total. Try k=10, p=20, n=500 for a quick experiment. In this simulation, we
@@ -43,4 +44,9 @@ assume that each user will look at the first page and will rate all of the items
 page according to the actual quality of the item. Item quality will be sampled from a
 uniform distribution. In order to get decent averages, the system will run many (50) simulations
 in parallel.
+
+The file named "samples.csv" will contain data that defines a graph which shows the number
+of samples taken as a function of the rank of a comment.  You should see a sharp drop at the
+end of the first page indicating that only the highest quality comments are actually
+characterized carefully.
 
