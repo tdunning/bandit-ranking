@@ -26,6 +26,8 @@ dramatically.
 
 # Running The Code
 
+As you read this, you may want to look at the javadocs[2].
+
 To compile this code you need Java 1.7 and Maven 3 and an internet connection. Once you
 have these, do this:
 
@@ -49,3 +51,5 @@ The file named "samples.csv" will contain data that defines a graph which shows 
 of samples taken as a function of the rank of a comment.  You should see a sharp drop at the
 end of the first page indicating that only the highest quality comments are actually
 characterized carefully.
+
+[2] http://tdunning.github.io/bandit-ranking/
