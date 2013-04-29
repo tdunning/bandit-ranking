@@ -25,12 +25,12 @@ import java.util.Random;
  * Implements a beta-binomial pair of conjugate distributions.
  * <p/>
  * In this model, samples are distributed according to
- * <pre>
- *   \pi \sim \mathrm {Beta}(\alpha, \beta)
+ * \[
+ *   \pi \sim \mathrm {Beta}(\alpha, \beta) \\
  *   x \sim \mathrm {Bernoulli} (\pi)
- * </pre>
- * The nextDouble() method returns a sample of $x$ and the nextMean()
- * returns a sample of $\pi$.
+ * \]
+ * The nextDouble() method returns a sample of \(x\) and the nextMean()
+ * returns a sample of \(\pi\).
  */
 public class BetaBinomialDistribution extends AbstractBayesianDistribution {
     private final Random gen;

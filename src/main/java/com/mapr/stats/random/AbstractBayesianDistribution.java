@@ -24,16 +24,16 @@ import org.apache.mahout.math.jet.random.AbstractContinousDistribution;
  * Expresses the common characteristics of a two-level distribution in which
  * the higher level distribution describes a prior distribution of parameters
  * for the lower level distribution.  Generically speaking, we have
- * <pre>
- *   \theta ~ p1(\alpha)
- *   x | \theta ~ p2(\theta)
- * </pre>
- * Here learning involves computing the posterior distribution of \theta | x.  Note
- * that \theta is really a theoretical entity here and isn't really required of an
+ * \[
+ *   \theta ~ p_1(\alpha) \\
+ *   x | \theta ~ p_2(\theta)
+ * \]
+ * Here learning involves computing the posterior distribution of \(\theta \mid x\).  Note
+ * that \(\theta\) is really a theoretical entity here and isn't really required of an
  * implementation.  The only required operations include:
  * <ul>
- * <li>nextDouble() Sample x from the posterior of p2.</li>
- * <li>nextMean() Sample E[x] from the posterior of p2.</li>
+ * <li>nextDouble() Sample \(x\) from the posterior of \(p_2\).</li>
+ * <li>nextMean() Sample \(E[x]\) from the posterior of \(p_2\).</li>
  * <li>add() Add a new observation x to define a new posterior distribution.</li>
  * <li>posteriorDistribution() Return a copy of the posterior distribution.</li>
  * </ul>

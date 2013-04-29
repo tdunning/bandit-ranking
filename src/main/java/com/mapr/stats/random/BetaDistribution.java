@@ -25,6 +25,21 @@ import java.util.Random;
 
 /**
  * Sample from a beta distribution.
+ *
+ * The beta distribution has PDF of
+ * \[
+ * p(x \mid \alpha, \alpha) = {\frac {\Gamma(\alpha+\beta)} {\Gamma(\alpha) \Gamma(\beta}} x^{\alpha-1} (1-x)^{\beta-1}
+ * \]
+ * Note that \( \frac {\Gamma(\alpha) \Gamma(\beta)}  {\Gamma(\alpha+\beta)} \)
+ * and is known as the beta function \(B(\alpha, \beta)\).
+ *
+ * Sampling from the beta distribution \(x \sim B(\alpha, \beta)\) can be done by using the following procedure which depends
+ * on sampling from the gamma distribution
+ * \[
+ * u \sim \Gamma(\alpha, 1) \\
+ * v \sim \Gamma(\beta, 1) \\
+ * x = \frac u {u+v}
+ * \]
  */
 public class BetaDistribution extends AbstractContinousDistribution {
     private final Gamma gAlpha;

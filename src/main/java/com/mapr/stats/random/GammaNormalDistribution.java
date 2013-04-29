@@ -25,8 +25,20 @@ import org.apache.mahout.math.jet.random.Normal;
 import java.util.Random;
 
 /**
- * Samples from a Gamma Normal distribution.  Provision is made for adding
+ * Samples from a Gamma-Normal distribution.  Provision is made for adding
  * observations to update the posterior distribution.
+ *
+ * The Gamma-Normal distribution uses a Gamma distribution for the distribution of the
+ * variance, a normal distribution for the distribution of the mean conditional
+ * on the variance and another normal distribution for the samples conditional
+ * on the mean and standard deviation.  That is,
+ * \[
+ * 1/\sigma^2 \sim \Gamma(n / 2, s/2) \\
+ * \mu \sim \mathcal N \left(m, \sqrt{\sigma^2/n}\right) \\
+ * x \sim \mathcal N(\mu, \sigma)
+ * \]
+ * In this form, \(n\) is the number of samples seen so far and \(s\) is the total squared
+ * deviation from the empirical mean.
  */
 public class GammaNormalDistribution extends AbstractBayesianDistribution {
     private Random gen = RandomUtils.getRandom();
@@ -54,6 +66,11 @@ public class GammaNormalDistribution extends AbstractBayesianDistribution {
         return nd.nextDouble() * Math.sqrt(variance) + mean;
     }
 
+    /**
+     * Adds an observed sample \(x\) to the distribution.
+     *
+     * @param x The observed sample.
+     */
     @Override
     public void add(double x) {
         n += 1;
